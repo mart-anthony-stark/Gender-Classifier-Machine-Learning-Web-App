@@ -14,6 +14,11 @@
       <input type="text" id="name-input" name="name" placeholder="Input name" />
       <input type="submit" value="Predict" />
     </form>
+    {% if vars is defined %}
+    <h2>Name: {{ vars['name'] }}</h2>
+    <h2>Prediction: {{ vars['result'] }}</h2>
+    <h2>Probability: {{ "{:.2f}".format(vars['probability']) }}</h2>
+    {% endif %}
   </main>
 </body>
 
