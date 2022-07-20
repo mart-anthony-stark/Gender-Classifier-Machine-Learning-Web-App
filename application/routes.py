@@ -8,16 +8,15 @@ cv = pickle.load(open('./vectorizer.pkl', 'rb'))
 
 @app.route('/', methods=['GET'])
 def index():
-  return render_template('index.html')
-
-@app.route('/predict', methods=['POST'])
-def predict():
-  names = []
-  names.append(request.form['name'])
-  vector = cv.transform(names).toarray()
-  genders = ['Male', 'Female']
-  prediction = clf.predict(vector)
-  probability = clf.predict_proba(vector)[0][0] * 100
-  result = genders[prediction[0]]
-  print(result)
-  return render_template('index.html',vars={"name": names[0], "result": result, "probability": probability})
+  if request.method == 'POST':
+    names = []
+    names.append(request.form['name'])
+    vector = cv.transform(names).toarray()
+    genders = ['Male', 'Female']
+    prediction = clf.predict(vector)
+    probability = clf.predict_proba(vector)[0][0] * 100
+    result = genders[prediction[0]]
+    print(result)
+    return render_template('index.html',vars={"name": names[0], "result": result, "probability": probability})
+  else:
+    return render_template('index.html')  
