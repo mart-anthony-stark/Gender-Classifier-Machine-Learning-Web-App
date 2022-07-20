@@ -16,9 +16,11 @@
       <input type="submit" value="Predict" />
     </form>
     {% if vars is defined %}
-    <h2>Name: {{ vars['name'] }}</h2>
-    <h2>Prediction: {{ vars['result'] }}</h2>
-    <h2>Probability: {{ "{:.2f}".format(vars['probability']) }}</h2>
+    <div class="result">
+      <h2>Name: {{ vars['name'] }}</h2>
+      <h2>Predicted Value: {{ vars['result'] }}</h2>
+      <h2>Probability: {{ "{:.2f}".format(vars['probability']) }}%</h2>
+    </div>
     {% endif %}
 
   </main>
