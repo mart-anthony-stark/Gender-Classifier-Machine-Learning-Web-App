@@ -6,7 +6,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 clf = pickle.load(open('./gender_classifier.pkl', 'rb'))
 cv = pickle.load(open('./vectorizer.pkl', 'rb'))
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET','POST'])
 def index():
   if request.method == 'POST':
     names = []
